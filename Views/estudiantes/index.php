@@ -17,22 +17,27 @@
       </thead>
       <tbody>
         <?php  
-        while ($item = mysqli_fetch_array($datos)) {
+        if($datos->num_rows > 0){
+            while ($item = mysqli_fetch_array($datos)) {
         ?>
         <tr>
           <th scope="row"><?php print $item["id"]; ?></th>
           <td><img src="<?php print URL."Views/template/image/avatars/".$item["imagen"]; ?>" style="width: 75px; display: block; border-radius: 100%;"></td>
-          <td><?php print $item["nombre"]; ?></td>
+          <td><a href="<?php print URL."estudiantes/ver/".$item['id']; ?>"><?php print $item["nombre"]; ?></td>
           <td><?php print $item["edad"]; ?></td>
           <td><?php print $item["promedio"]; ?></td>
           <td><?php print $item["nombre_seccion"]; ?></td>
           <td><?php print $item["fecha"]; ?></td>
           <td>
-              <a href="<?php echo URL."estudiantes/editar/".$item["id"] ?>"class="btn btn-warning" type="button">Editar</a>
-              <a href="<?php echo URL."estudiantes/eliminar/".$item["id"] ?>"class="btn btn-danger" type="button">Eliminar</a>
+              <a href="<?php print URL."estudiantes/editar/".$item["id"]; ?>"class="btn btn-warning m-2" type="button">Editar</a>
+              <a href="<?php print URL."estudiantes/eliminar/".$item["id"]; ?>"class="btn btn-danger m-2" type="button">Eliminar</a>
           </td>
         </tr>
-        <?php }?>
+        <?php }/** end while **/ }else { ?>
+        <tr>
+            <td colspan="8">Por el momento no hay ningun registro</td>
+        </tr>
+        <?php } ?>
       </tbody>
     </table>
 </div>

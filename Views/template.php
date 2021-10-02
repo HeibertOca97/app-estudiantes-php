@@ -23,9 +23,6 @@ class Template{
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="<?php echo URL ?>">Inicio</a>
-              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="estudiantes_link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Estudiantes

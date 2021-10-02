@@ -7,9 +7,22 @@ class Seccion{
     $this->con = new Conexion();
   }
 
+  public function set($propiedad, $valor){
+    if(property_exists($this, $propiedad)){
+      $this->$propiedad = $valor;
+    }
+  }
+
+  public function get($propiedad){
+    if(property_exists($this, $propiedad)){
+      return $this->$propiedad;
+    }
+  }
+
   public function listar(){
-    $sql = "SELECT * FROM secciones";
-    return $this->con->consultaRetorno($sql);
+    $sql = "SELECT * FROM secciones ORDER BY nombre ASC";
+    $datos = $this->con->consultaRetorno($sql);
+    return $datos;
   }
 
   public function add(){
@@ -25,7 +38,7 @@ class Seccion{
   }
 
   public function edit(){
-    $sql = "UPDATE FROM secciones SET nombre='{$this->nombre}' WHERE id = {$this->id}";
+    $sql = "UPDATE secciones SET nombre='{$this->nombre}' WHERE id = {$this->id}";
     
     $this->con->consultaSimple($sql);
   }
@@ -35,6 +48,13 @@ class Seccion{
 
     $datos = $this->con->consultaRetorno($sql);
     return mysqli_fetch_assoc($datos);
+  }
+
+  public function viewDifferent(){
+    $sql = "SELECT * FROM secciones WHERE id != {$this->id}";
+    $datos = $this->con->consultaRetorno($sql);
+
+    return $datos;
   }
 
 }

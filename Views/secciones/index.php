@@ -12,17 +12,22 @@
       </thead>
       <tbody>
         <?php  
-        while ($item = mysqli_fetch_array($datos)) {
+        if ($datos->num_rows > 0) {
+            while ($item = mysqli_fetch_array($datos)) {
         ?>
         <tr>
           <th scope="row"><?php print $item["id"]; ?></th>
           <td><?php print $item["nombre"]; ?></td>
           <td>
-              <a href="<?php echo URL."secciones/editar/".$item["id"] ?>"class="btn btn-warning" type="button">Editar</a>
-              <a href="<?php echo URL."secciones/eliminar/".$item["id"] ?>"class="btn btn-danger" type="button">Eliminar</a>
+              <a href="<?php print URL."secciones/editar/".$item["id"]; ?>"class="btn btn-warning" type="button">Editar</a>
+              <a href="<?php print URL."secciones/eliminar/".$item["id"]; ?>"class="btn btn-danger" type="button">Eliminar</a>
           </td>
         </tr>
-        <?php }?>
+        <?php }/** end while **/ }else { ?>
+        <tr>
+            <td colspan="3">Por el momento no hay ningun registro</td>
+        </tr>
+        <?php } ?>
       </tbody>
     </table>
 </div>
